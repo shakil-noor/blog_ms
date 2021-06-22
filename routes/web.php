@@ -26,4 +26,5 @@ Route::get('/admin', function () {
 Route::group(['prefix'=>'admin','namespace'=>'BackSite'],function (){
     Route::resource('category','CategoryController');
     Route::resource('subCategory','SubCategoryController');
+    Route::resource('tag','TagController');
 });

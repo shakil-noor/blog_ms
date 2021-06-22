@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\BackSite;
 
-use App\Models\Category;
+use App\Models\Tag;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::latest()->get();
-        return view('BackSite.category.index', compact('categories'));
+        $tags = Tag::latest()->get();
+        return view('BackSite.tag.index', compact('tags'));
     }
 
     /**
@@ -26,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('BackSite.category.create');
+        return view('BackSite.tag.create');
     }
 
     /**
@@ -38,24 +38,20 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'name' => 'required|unique:categories',
-            'description' => 'required',
+            'name' => 'required|unique:tags',
         ]);
 
-        $category = new Category();
-        $category->name = $request->name;
-        $category->slug =$request->name.rand();
-        $category->description = $request->description;
+        $tag = new Tag();
+        $tag->name = $request->name;
         
         try{
-            $category->save();
-            return redirect()->route('category.index')->with('success', 'Category Created successfully!');
+            $tag->save();
+            return redirect()->route('tag.index')->with('success', 'Tag Created successfully!');
         }catch(\Exception $e){
             return redirect()->back()
                 ->with('error', 'Error during the creation!');
             
         }
-        
     }
 
     /**
@@ -75,9 +71,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Tag $tag)
     {
-        return view('BackSite.category.edit', compact('category'));
+        return view('BackSite.tag.edit', compact('tag'));
     }
 
     /**
@@ -87,25 +83,21 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Tag $tag)
     {
-        if ($category->name != $request->name){
+        if ($tag->name != $request->name){
             $this->validate($request,[
-                'name' => 'required|unique:categories',
-                'description' => 'required',
+                'name' => 'required|unique:tags',
             ]);
         }else{
             $this->validate($request,[
                 'name' => 'required',
-                'description' => 'required',
             ]);
         }
 
-        $category->name = $request->name;
-        $category->slug =$request->name.rand();
-        $category->description = $request->description;
-        $category->save();
-        return redirect()->route('category.index')->with('success', 'Category Updated Successfully!');
+        $tag->name = $request->name;
+        $tag->save();
+        return redirect()->route('tag.index')->with('success', 'Tag Updated Successfully!');
     }
 
     /**
@@ -116,7 +108,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        Category::destroy($id);
-        return redirect()->route('category.index')->with('success', 'Category Deleted successfully!');
+        Tag::destroy($id);
+        return redirect()->route('tag.index')->with('success', 'Tag Deleted successfully!');;
     }
 }

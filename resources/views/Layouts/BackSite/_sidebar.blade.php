@@ -21,6 +21,9 @@
                         <a title="Landing Page" href="{{route('subCategory.index')}}" aria-expanded="false"><span class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Sub Category</span></a>
                     </li>
                     <li>
+                        <a title="Landing Page" href="{{route('tag.index')}}" aria-expanded="false"><span class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Tags</span></a>
+                    </li>
+                    <li>
                         <a class="has-arrow" href="all-professors.html" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Professors</span></a>
                         <ul class="submenu-angle" aria-expanded="false">
                             <li><a title="All Professors" href="all-professors.html"><span class="mini-sub-pro">All Professors</span></a></li>
