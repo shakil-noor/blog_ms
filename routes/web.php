@@ -17,3 +17,12 @@ Route::get('/', function () {
     return view('FrontSite/index');
 });
 //Route::get('/','Frontend\HomeController@index')->name('vromon.home');
+
+
+Route::get('/admin', function () {
+    return view('BackSite/index');
+})->name('admin.home');
+
+Route::group(['prefix'=>'admin','namespace'=>'BackSite'],function (){
+    Route::resource('category','CategoryController');
+});
