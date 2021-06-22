@@ -59,8 +59,6 @@
                                         @endforeach
                                         </tbody>
                                     </table>
-                                    <td>
-                    </td> 
                                 </div>
                             </div>
                         </div>
@@ -117,7 +115,6 @@
                     )
                 }
             })
-
         }
     </script>
 @endsection
